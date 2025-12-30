@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -19,13 +21,18 @@ public class PhotosInfoApplication {
 		public static void main(String[] args) {
 
 			boolean continua = true;
+
 			while(continua) {
+
 				System.out.println("Digite o caminho da pasta:");
 				Scanner scan = new Scanner(System.in);
 				String caminhoPasta = scan.nextLine();
 				System.out.println(caminhoPasta);
+
+
+
 				String usuario = System.getProperty("user.name");
-				String arquivoSaida = "C:\\Users\\" + usuario + "\\Downloads\\MetaDados.csv";
+				String arquivoSaida = "C:\\Users\\" + usuario + "\\Downloads\\"+ Date.from(Instant.now()).toString().replace(":", ";")+ " - Metadados.csv";
 
 				try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoSaida))) {
 					// Cabeçalho da planilha
